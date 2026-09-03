@@ -77,15 +77,5 @@
       </bt:ShortStrings>
     </Resources>
 
-    <!-- Entra ID SSO: koppelt de add-in aan de app-registratie voor stille token-uitgifte -->
-    <WebApplicationInfo>
-      <Id>7e4b4588-7e49-4c7f-a81f-7a53eadf8c13</Id>
-      <Resource>api://7e4b4588-7e49-4c7f-a81f-7a53eadf8c13</Resource>
-      <Scopes>
-        <Scope>openid</Scope>
-        <Scope>profile</Scope>
-      </Scopes>
-    </WebApplicationInfo>
-
   </VersionOverrides>
 </OfficeApp>
