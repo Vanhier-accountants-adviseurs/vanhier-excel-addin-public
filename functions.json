@@ -1,0 +1,30 @@
+{
+  "functions": [
+    {
+      "id": "VANHIERCRM",
+      "name": "VANHIERCRM",
+      "description": "Haalt een waarde op uit VanhierCRM",
+      "result": {
+        "type": "string",
+        "dimensionality": "scalar"
+      },
+      "parameters": [
+        {
+          "name": "kolomnaam",
+          "description": "Naam van de kolom",
+          "type": "string",
+          "dimensionality": "scalar"
+        },
+        {
+          "name": "klantnummer",
+          "description": "Klantnummer",
+          "type": "string",
+          "dimensionality": "scalar"
+        }
+      ],
+      "options": {
+        "requiresAddress": false
+      }
+    }
+  ]
+}
