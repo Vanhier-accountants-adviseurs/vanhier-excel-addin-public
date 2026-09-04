@@ -2,4 +2,6 @@ function WERKT() {
   return "Werkt";
 }
 
-CustomFunctions.associate("WERKT", WERKT);
+Office.onReady(function () {
+  CustomFunctions.associate("WERKT", WERKT);
+});
