@@ -57,6 +57,34 @@
             </Metadata>
             <Namespace resid="Functions.Namespace" />
           </ExtensionPoint>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="VanhierCommandsGroup">
+                <Label resid="CommandsGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButton.Label" />
+                  <Supertip>
+                    <Title resid="TaskpaneButton.Label" />
+                    <Description resid="TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>VanhierTaskpane</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
     </Hosts>
@@ -71,10 +99,16 @@
         <bt:Url id="Functions.Script.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.js" />
         <bt:Url id="Functions.Metadata.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.json" />
         <bt:Url id="Functions.Runtime.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.html" />
+        <bt:Url id="Taskpane.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="Functions.Namespace" DefaultValue="VANHIER" />
+        <bt:String id="CommandsGroup.Label" DefaultValue="VanhierCRM" />
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Testpaneel" />
       </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Open het VanhierCRM-testpaneel" />
+      </bt:LongStrings>
     </Resources>
 
   </VersionOverrides>
