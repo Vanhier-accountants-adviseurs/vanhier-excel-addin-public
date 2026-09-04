@@ -3,22 +3,23 @@
   xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
 
-  <!-- Vervang door je eigen GUID indien je er meerdere gaat maken -->
   <Id>8c73cdc2-95e7-4ef5-84cc-4bf54aa58c13</Id>
-  <Version>1.0.0.1</Version>
+  <Version>1.0.0.2</Version>
   <ProviderName>Vanhier</ProviderName>
   <DefaultLocale>nl-NL</DefaultLocale>
+
   <DisplayName DefaultValue="VanhierCRM" />
   <Description DefaultValue="Haalt klantgegevens op uit VanhierCRM via de functie VANHIERCRM()." />
+
   <IconUrl DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-32.png" />
   <HighResolutionIconUrl DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-80.png" />
-  <SupportUrl DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public" />
+  <SupportUrl DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/" />
 
   <AppDomains>
-    <AppDomain>https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public</AppDomain>
+    <AppDomain>https://vanhier-accountants-adviseurs.github.io</AppDomain>
+    <AppDomain>https://vanhierinternerapportagepremium.azurewebsites.net</AppDomain>
   </AppDomains>
 
   <Hosts>
@@ -31,7 +32,11 @@
 
   <Permissions>ReadWriteDocument</Permissions>
 
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+  <VersionOverrides
+    xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+    xsi:type="VersionOverridesV1_0">
+
     <Requirements>
       <bt:Sets DefaultMinVersion="1.1">
         <bt:Set Name="CustomFunctionsRuntime" MinVersion="1.1" />
@@ -40,76 +45,126 @@
 
     <Hosts>
       <Host xsi:type="Workbook">
+
         <Runtimes>
           <Runtime resid="Functions.Runtime.Url" lifetime="short" />
         </Runtimes>
+
         <DesktopFormFactor>
+
           <FunctionFile resid="Functions.Runtime.Url" />
+
           <ExtensionPoint xsi:type="CustomFunctions">
             <Script>
               <SourceLocation resid="Functions.Script.Url" />
             </Script>
+
             <Page>
               <SourceLocation resid="Functions.Runtime.Url" />
             </Page>
+
             <Metadata>
               <SourceLocation resid="Functions.Metadata.Url" />
             </Metadata>
+
             <Namespace resid="Functions.Namespace" />
           </ExtensionPoint>
+
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <OfficeTab id="TabHome">
+
               <Group id="VanhierCommandsGroup">
                 <Label resid="CommandsGroup.Label" />
+
                 <Icon>
                   <bt:Image size="16" resid="Icon.16x16" />
                   <bt:Image size="32" resid="Icon.32x32" />
                   <bt:Image size="80" resid="Icon.80x80" />
                 </Icon>
+
                 <Control xsi:type="Button" id="TaskpaneButton">
                   <Label resid="TaskpaneButton.Label" />
+
                   <Supertip>
                     <Title resid="TaskpaneButton.Label" />
                     <Description resid="TaskpaneButton.Tooltip" />
                   </Supertip>
+
                   <Icon>
                     <bt:Image size="16" resid="Icon.16x16" />
                     <bt:Image size="32" resid="Icon.32x32" />
                     <bt:Image size="80" resid="Icon.80x80" />
                   </Icon>
+
                   <Action xsi:type="ShowTaskpane">
                     <TaskpaneId>VanhierTaskpane</TaskpaneId>
                     <SourceLocation resid="Taskpane.Url" />
                   </Action>
                 </Control>
+
               </Group>
             </OfficeTab>
           </ExtensionPoint>
+
         </DesktopFormFactor>
       </Host>
     </Hosts>
 
     <Resources>
-      <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-16.png" />
-        <bt:Image id="Icon.32x32" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-32.png" />
-        <bt:Image id="Icon.80x80" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-80.png" />
-      </bt:Images>
-      <bt:Urls>
-        <bt:Url id="Functions.Script.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.js" />
-        <bt:Url id="Functions.Metadata.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.json" />
-        <bt:Url id="Functions.Runtime.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.html" />
-        <bt:Url id="Taskpane.Url" DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/taskpane.html" />
-      </bt:Urls>
-      <bt:ShortStrings>
-        <bt:String id="Functions.Namespace" DefaultValue="VANHIER" />
-        <bt:String id="CommandsGroup.Label" DefaultValue="VanhierCRM" />
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Testpaneel" />
-      </bt:ShortStrings>
-      <bt:LongStrings>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Open het VanhierCRM-testpaneel" />
-      </bt:LongStrings>
-    </Resources>
 
+      <bt:Images>
+        <bt:Image
+          id="Icon.16x16"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-16.png" />
+
+        <bt:Image
+          id="Icon.32x32"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-32.png" />
+
+        <bt:Image
+          id="Icon.80x80"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-80.png" />
+      </bt:Images>
+
+      <bt:Urls>
+        <bt:Url
+          id="Functions.Script.Url"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.js" />
+
+        <bt:Url
+          id="Functions.Metadata.Url"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.json" />
+
+        <bt:Url
+          id="Functions.Runtime.Url"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/functions.html" />
+
+        <bt:Url
+          id="Taskpane.Url"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/taskpane.html" />
+      </bt:Urls>
+
+      <bt:ShortStrings>
+        <bt:String
+          id="Functions.Namespace"
+          DefaultValue="VANHIER" />
+
+        <bt:String
+          id="CommandsGroup.Label"
+          DefaultValue="VanhierCRM" />
+
+        <bt:String
+          id="TaskpaneButton.Label"
+          DefaultValue="Testpaneel" />
+      </bt:ShortStrings>
+
+      <bt:LongStrings>
+        <bt:String
+          id="TaskpaneButton.Tooltip"
+          DefaultValue="Open het VanhierCRM-testpaneel" />
+      </bt:LongStrings>
+
+    </Resources>
   </VersionOverrides>
+
 </OfficeApp>
