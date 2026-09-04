@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>VanhierCRM Taskpane</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <style>
+    body { font-family: -apple-system, Segoe UI, sans-serif; padding: 16px; }
+    h2 { color: #0078d4; }
+    button { background: #0078d4; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 8px; }
+    button:disabled { background: #ccc; }
+    #status { margin-top: 12px; padding: 8px; border-radius: 4px; background: #f3f3f3; white-space: pre-wrap; word-break: break-word; }
+    #status.ok { background: #dff6dd; }
+    #status.err { background: #fde7e9; }
+  </style>
+</head>
+<body>
+  <h2>VanhierCRM — testpaneel</h2>
+  <p id="office-status">Office.js laden...</p>
+
+  <button id="testBtn" disabled>Test CRM-aanroep</button>
+  <div id="status">Nog niets getest.</div>
+
+  <script>
+    Office.onReady(function (info) {
+      document.getElementById("office-status").textContent =
+        "Office.js geladen. Host: " + info.host + " / Platform: " + info.platform;
+      document.getElementById("testBtn").disabled = false;
+    });
+
+    document.getElementById("testBtn").addEventListener("click", async function () {
+      const statusEl = document.getElementById("status");
+      statusEl.className = "";
+      statusEl.textContent = "Bezig met aanroepen...";
+
+      const baseUrl = "https://vanhierinternerapportagepremium.azurewebsites.net/api/klanten";
+      const code = "G0Y989WRLvuqJU_aoczo3_RWmxUDyJUCG57J3ewEwbXJAzFu31k47Q==";
+      const url = `${baseUrl}?code=${code}&kolom=${encodeURIComponent("Klantimportantie")}&klantnummer=${encodeURIComponent("02020518")}`;
+
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+        if (!response.ok) {
+          statusEl.className = "err";
+          statusEl.textContent = `HTTP ${response.status}\n${text}`;
+        } else {
+          statusEl.className = "ok";
+          statusEl.textContent = `Succes:\n${text}`;
+        }
+      } catch (e) {
+        statusEl.className = "err";
+        statusEl.textContent = "Fetch-fout: " + e.message;
+      }
+    });
+  </script>
+</body>
+</html>
