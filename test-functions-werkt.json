@@ -1,0 +1,14 @@
+{
+  "functions": [
+    {
+      "id": "WERKT",
+      "name": "WERKT",
+      "description": "Geeft de tekst Werkt terug.",
+      "result": {
+        "type": "string",
+        "dimensionality": "scalar"
+      },
+      "parameters": []
+    }
+  ]
+}

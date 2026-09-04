@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xsi:type="TaskPaneApp">
+
+  <Id>f4bc9f7a-4b6e-4b6c-9c96-3ecb2d6a72d1</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Vanhier</ProviderName>
+  <DefaultLocale>nl-NL</DefaultLocale>
+  <DisplayName DefaultValue="Vanhier Custom Function Test" />
+  <Description DefaultValue="Testadd-in voor een eenvoudige Excel custom function." />
+  <IconUrl DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/assets/icon-80.png" />
+  <SupportUrl DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/" />
+
+  <AppDomains>
+    <AppDomain>https://vanhier-accountants-adviseurs.github.io</AppDomain>
+  </AppDomains>
+
+  <Hosts>
+    <Host Name="Workbook" />
+  </Hosts>
+
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/test-functions-werkt.html" />
+  </DefaultSettings>
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides
+    xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+    xsi:type="VersionOverridesV1_0">
+
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.1">
+        <bt:Set Name="CustomFunctionsRuntime" MinVersion="1.1" />
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <Runtimes>
+          <Runtime resid="TestFunctions.Runtime.Url" lifetime="short" />
+        </Runtimes>
+
+        <DesktopFormFactor>
+          <FunctionFile resid="TestFunctions.Runtime.Url" />
+
+          <ExtensionPoint xsi:type="CustomFunctions">
+            <Script>
+              <SourceLocation resid="TestFunctions.Script.Url" />
+            </Script>
+            <Page>
+              <SourceLocation resid="TestFunctions.Runtime.Url" />
+            </Page>
+            <Metadata>
+              <SourceLocation resid="TestFunctions.Metadata.Url" />
+            </Metadata>
+            <Namespace resid="TestFunctions.Namespace" />
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Urls>
+        <bt:Url
+          id="TestFunctions.Script.Url"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/test-functions-werkt.js" />
+        <bt:Url
+          id="TestFunctions.Metadata.Url"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/test-functions-werkt.json" />
+        <bt:Url
+          id="TestFunctions.Runtime.Url"
+          DefaultValue="https://vanhier-accountants-adviseurs.github.io/vanhier-excel-addin-public/test-functions-werkt.html" />
+      </bt:Urls>
+
+      <bt:ShortStrings>
+        <bt:String id="TestFunctions.Namespace" DefaultValue="VANHIERTEST" />
+      </bt:ShortStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
